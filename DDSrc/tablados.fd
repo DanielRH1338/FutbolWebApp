@@ -1,0 +1,3 @@
+#REPLACE FILE1 tablados
+#REPLACE tablados.File_Number |CI1
+#REPLACE tablados.idtablados |FN1,1

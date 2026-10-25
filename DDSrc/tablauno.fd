@@ -1,0 +1,3 @@
+#REPLACE FILE2 tablauno
+#REPLACE tablauno.File_Number |CI2
+#REPLACE tablauno.idtablauno |FN2,1
