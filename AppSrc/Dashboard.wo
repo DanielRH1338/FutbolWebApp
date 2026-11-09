@@ -65,7 +65,7 @@ Object oDashboard is a cWebView
                 
             End_Object
     
-            Object oTile2 is a cWebHtmlBox
+            Object oEquipoTile is a cWebHtmlBox
                 Set pbServerOnClick to True
                 Set piColumnSpan to 6
                 Set piColumnIndex to 6
@@ -74,13 +74,13 @@ Object oDashboard is a cWebView
                                 
                 WebRegisterPath ntNavigateForwardCustom oSelectEquipo
                 
-                Procedure OnClick String sId String sParam
+                Procedure OnClick String sId  String sParam
                     Send NavigatePath
                 End_Procedure
                 
             End_Object
     
-            Object oTile3 is a cWebHtmlBox
+            Object oEntrenador is a cWebHtmlBox
                 Set pbServerOnClick to True
                 Set piColumnSpan to 6
                 Set psCSSClass to "Tile Dark"
@@ -94,7 +94,7 @@ Object oDashboard is a cWebView
                 
             End_Object
     
-            Object oTile4 is a cWebHtmlBox
+            Object oJugador is a cWebHtmlBox
                 Set pbServerOnClick to True
                 Set piColumnSpan to 6
                 Set piColumnIndex to 6
@@ -109,7 +109,7 @@ Object oDashboard is a cWebView
                 
             End_Object
             
-            Object oTile5 is a cWebHtmlBox
+            Object oJugadorPosicion is a cWebHtmlBox
                 Set pbServerOnClick to True
                 Set piColumnSpan to 6
                 Set psCSSClass to "Tile Dark"
@@ -122,7 +122,7 @@ Object oDashboard is a cWebView
                 End_Procedure
             End_Object
             
-            Object oTile6 is a cWebHtmlBox
+            Object oLiga is a cWebHtmlBox
                 Set pbServerOnClick to True
                 Set piColumnSpan to 6
                 Set piColumnIndex to 6

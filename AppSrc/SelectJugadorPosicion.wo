@@ -17,7 +17,7 @@ Use cposicionDataDictionary.dd
 Use cjugadorposicionDataDictionary.dd
 
 Object oSelectJugadorPosicion is a cWebView
-    Set psCaption to "SelectJugadorPosicion"
+    Set psCaption to "Posicion"
     Set peWebViewStyle to wvsDrilldown
     Set peViewType to vtSelect
     Set piColumnCount to 12

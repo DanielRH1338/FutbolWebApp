@@ -13,7 +13,7 @@ Use ZoomLiga.wo
 Use cligaDataDictionary.dd
 
 Object oSelectLiga is a cWebView
-    Set psCaption to "SelectLiga"
+    Set psCaption to "Liga"
     Set peWebViewStyle to wvsDrilldown
     Set peViewType to vtSelect
     Set piColumnCount to 12
@@ -34,12 +34,12 @@ Object oSelectLiga is a cWebView
         Set pbFillHeight to True
         Set pbShowHeader to False
         Set piSortColumn to 0
-
-        Object oligaID is a cWebColumn
+        
+        /*Object oligaID is a cWebColumn
             Entry_Item liga.ID
             Set psCaption to "liga.ID"
             Set piWidth to 100
-        End_Object 
+        End_Object */
 
         Object oligaNombre is a cWebColumn
             Entry_Item liga.Nombre
@@ -53,17 +53,17 @@ Object oSelectLiga is a cWebView
             Set piWidth to 500
         End_Object 
 
-        Object oligaEquipos is a cWebColumn
+        /*Object oligaEquipos is a cWebColumn
             Entry_Item liga.Equipos
             Set psCaption to "liga.Equipos"
             Set piWidth to 100
-        End_Object 
+        End_Object */
 
-        Object oligaEquiposMax is a cWebColumn
+       /* Object oligaEquiposMax is a cWebColumn
             Entry_Item liga.EquiposMax
             Set psCaption to "liga.EquiposMax"
             Set piWidth to 100
-        End_Object 
+        End_Object */
 
         Object oDetailButton is a cWebColumnButton
             Set psCaption to "btn"
@@ -74,7 +74,7 @@ Object oSelectLiga is a cWebView
             Set psBtnCssClass to "WebButtonIcon WebIcon_Info"
             Set peAlign to alignRight
 
-            WebRegisterPath ntNavigateForward oZoomLiga
+            WebRegisterPath ntNavigateForward oSelectEquipo
 
             Procedure OnClick
                 Send NavigatePath
