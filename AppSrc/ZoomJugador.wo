@@ -7,7 +7,8 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
-
+Use SelectPosicion.wo
+Use cWebButton.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
@@ -79,14 +80,24 @@ Object oZoomJugador is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "EquipoID"
             Set pbPromptButton to True
+        End_Object
+        Object oPosicionesBtn is a cWebButton
+                Set psCaption to "Posiciones"
+                Set piColumnSpan to 4
+                Set piColumnIndex to 0
+                WebRegisterPath ntNavigateForwardCustom oSelectPosicion
+                
+                Procedure OnClick
+                    Send NavigatePath
+                End_Procedure
+        End_Object
 
 // ToDo: Fill in the from-child parent Select view object name for navigate forward
 //            WebRegisterPath ntNavigateForward oSelectView
 
             Procedure OnPrompt
                 Send NavigatePath
-            End_Procedure
-        End_Object 
+            End_Procedure 
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
