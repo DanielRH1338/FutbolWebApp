@@ -11,11 +11,28 @@ Class centrenadorDataDictionary is a DataDictionary
 
         Set Add_Server_File to equipo.File_Number
 
+        Set ParentNullAllowed equipo.File_Number to True //Para que el padre pueda ser null
+
         Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
 
+    End_Procedure
+    
+    Procedure Save_Main_File
+        Integer iEquipo
+        
+        Get Field_Current_Value Field entrenador.EquipoID to iEquipo
+        
+        If (iEquipo = 0) Begin
+            Set_Attribute DF_FIELD_IS_NULL of entrenador.File_Number 5 to True 
+        End
+        Else Begin
+            Set_Attribute DF_FIELD_IS_NULL of entrenador.File_Number 5 to False
+        End
+        
+        Forward Send Save_Main_File
     End_Procedure
 
 End_Class
