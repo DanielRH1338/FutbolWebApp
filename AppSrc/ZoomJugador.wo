@@ -49,7 +49,11 @@ Object oZoomJugador is a cWebView
             Set psLabel to "ID"
         End_Object */
         
+
       Object oNombreCompletoGroup is a cWebGroup
+
+     Object oNombreCompletoGroup is a cWebGroup
+
             Set piColumnCount to 12
             Set pbShowBorder to True
 
@@ -67,6 +71,7 @@ Object oZoomJugador is a cWebView
             Set piColumnIndex to 6
             Set peLabelPosition to lpTop
             Set psLabel to "Apellido"
+
         End_Object
       End_Object
       
@@ -74,13 +79,22 @@ Object oZoomJugador is a cWebView
             Set piColumnCount to 12
             Set pbShowBorder to True
 
-        Object ojugadorNacionalidad is a cWebForm
+        End_Object 
+     End_Object
+
+
+     Object oNacionalidadGroup is a cWebGroup
+            Set piColumnCount to 12
+            Set pbShowBorder to True
+
+        Object ojugadorNacionalidad is a cWebCombo
             Entry_Item jugador.Nacionalidad
             Set piColumnSpan to 12
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nacionalidad"
         End_Object 
+
       End_Object
       
       Object oJugadorEquipoGroup is a cWebGroup
@@ -90,23 +104,47 @@ Object oZoomJugador is a cWebView
         Object oequipoID is a cWebForm
             Entry_Item equipo.Nombre
             Set piColumnSpan to 12
+
+     End_Object
+
+        /*Object oequipoID is a cWebForm
+            Entry_Item equipo.ID
+            Set piColumnSpan to 2
+
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Equipo"
             Set pbPromptButton to True
+        End_Object*/
+        
+     Object oJugadorEquipo is a cWebGroup
+        Set piColumnCount to 12
+        Set pbShowBorder to True
+     
+        
+       Object ojugadorEquipo is a cWebForm
+            Entry_Item equipo.Nombre
+            Set piColumnSpan to 2
+            Set piColumnIndex to 0
+            Set peLabelPosition to lpTop
+            Set psLabel to "Equipo"
+            Set pbPromptButton to True 
         End_Object
+
       End_Object
       
+
         Object oPosicionesBtn is a cWebButton
                 Set psCaption to "Posiciones"
-                Set piColumnSpan to 4
-                Set piColumnIndex to 0
+                Set piColumnSpan to 3
+                Set piColumnIndex to 2
                 WebRegisterPath ntNavigateForwardCustom oSelectPosicion
                 
                 Procedure OnClick
                     Send NavigatePath
                 End_Procedure
         End_Object
+     End_Object
 
 // ToDo: Fill in the from-child parent Select view object name for navigate forward
 //            WebRegisterPath ntNavigateForward oSelectView
