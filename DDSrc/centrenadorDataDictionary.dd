@@ -3,6 +3,13 @@
 Open entrenador
 Open equipo
 
+//Tabla de Validación
+
+Object oNacionalidadEntrenadorTable is a CodeValidationTable
+    Set Type_Value to "NACIONALID"
+    Set Allow_Blank_State to True 
+End_Object
+
 Class centrenadorDataDictionary is a DataDictionary
     
     Procedure Construct_Object
@@ -10,6 +17,8 @@ Class centrenadorDataDictionary is a DataDictionary
         Set Main_File to entrenador.File_Number
 
         Set Add_Server_File to equipo.File_Number
+        
+        Set Field_Value_Table Field entrenador.Nacionalidad to oNacionalidadEntrenadorTable
 
         Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
