@@ -7,11 +7,16 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
-Use SelectPosicion.wo
+Use SelectJugadorPosicion.wo
 Use cWebButton.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
+Use cWebGroup.pkg
+Use cWebCombo.pkg
+Use cWebList.pkg
+Use cjugadorposicionDataDictionary.dd
+Use cposicionDataDictionary.dd
 
 Object oZoomJugador is a cWebView
     Set piColumnCount to 12
@@ -32,11 +37,22 @@ Object oZoomJugador is a cWebView
     Object ojugador_DD is a cjugadorDataDictionary
         Set DDO_Server To oequipo_DD
     End_Object 
-
+    
+    
+    //Data Dictionaries de posicion y jugadorposicion para consultar/gestionar
+    // las posiciones asignadas al jugador actual sin cambiar el DD principal de la vista (jugador).
+    Object oposicion_DD is a cposicionDataDictionary
+    End_Object
+    
+    Object oposicionjugador_DD is a cjugadorposicionDataDictionary
+        Set DDO_Server to ojugador_DD
+        Set DDO_Server to oposicion_DD
+        Set Constrain_File to jugador.File_Number
+    End_Object
+    
     Set Main_DD To ojugador_DD
-    Set Server  To ojugador_DD
-
-
+    Set Server  to ojugador_DD
+    
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 12
         WebSetResponsive piColumnCount rmMobile to 4
@@ -48,12 +64,8 @@ Object oZoomJugador is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "ID"
         End_Object */
-        
-
-      Object oNombreCompletoGroup is a cWebGroup
 
      Object oNombreCompletoGroup is a cWebGroup
-
             Set piColumnCount to 12
             Set pbShowBorder to True
 
@@ -74,37 +86,27 @@ Object oZoomJugador is a cWebView
 
         End_Object
       End_Object
-      
-      Object oJugadorNacionalidadGroup is a cWebGroup
-            Set piColumnCount to 12
-            Set pbShowBorder to True
 
-        End_Object 
-     End_Object
-
-
-     Object oNacionalidadGroup is a cWebGroup
+     Object oNacionalidadyJugadorEquipoGroup is a cWebGroup
             Set piColumnCount to 12
             Set pbShowBorder to True
 
         Object ojugadorNacionalidad is a cWebCombo
             Entry_Item jugador.Nacionalidad
-            Set piColumnSpan to 12
+            Set piColumnSpan to 6
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nacionalidad"
         End_Object 
 
-      End_Object
-      
-      Object oJugadorEquipoGroup is a cWebGroup
-            Set piColumnCount to 12
-            Set pbShowBorder to True
-            
-        Object oequipoID is a cWebForm
+         Object ojugadorEquipo is a cWebForm
             Entry_Item equipo.Nombre
-            Set piColumnSpan to 12
-
+            Set piColumnSpan to 6
+            Set piColumnIndex to 6
+            Set peLabelPosition to lpTop
+            Set psLabel to "Equipo"
+            Set pbPromptButton to True 
+         End_Object
      End_Object
 
         /*Object oequipoID is a cWebForm
@@ -117,42 +119,41 @@ Object oZoomJugador is a cWebView
             Set pbPromptButton to True
         End_Object*/
         
-     Object oJugadorEquipo is a cWebGroup
-        Set piColumnCount to 12
-        Set pbShowBorder to True
-     
         
-       Object ojugadorEquipo is a cWebForm
-            Entry_Item equipo.Nombre
-            Set piColumnSpan to 2
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Equipo"
-            Set pbPromptButton to True 
-        End_Object
-
-      End_Object
-      
+// Botón para abrir SelectJugadorPosicion y lista con las posiciones asignadas al jugador
+     Object oPosicionJugador is a cWebGroup
+        Set psLabel to "Posiciones"
+        Set piColumnCount to 12
+        Set pbShowBorder to True 
 
         Object oPosicionesBtn is a cWebButton
-                Set psCaption to "Posiciones"
-                Set piColumnSpan to 3
-                Set piColumnIndex to 2
-                WebRegisterPath ntNavigateForwardCustom oSelectPosicion
+                Set psCaption to "Editar Posiciones"
+                Set piColumnSpan to 4
+                Set piColumnIndex to 0
+                WebRegisterPath ntNavigateForward oSelectJugadorPosicion 
                 
                 Procedure OnClick
                     Send NavigatePath
                 End_Procedure
         End_Object
-     End_Object
+        
+        Object oListaPosicionJugador is a cWebList
+           Set Server to oposicionjugador_DD
+           Set piColumnSpan to 12
+           Set piColumnIndex to 0
+           Set pbShowHeader to False
+            
+           Object oNombrePosicion is a cWebColumn
+              Entry_Item posicion.Nombre
+              Set psCaption to "Posición" 
+           End_Object
+        End_Object
+        
+   End_Object
+ End_Object
 
 // ToDo: Fill in the from-child parent Select view object name for navigate forward
-//            WebRegisterPath ntNavigateForward oSelectView
-
-            Procedure OnPrompt
-                Send NavigatePath
-            End_Procedure 
-    End_Object 
+//            WebRegisterPath ntNavigateForward oSelectView 
 
     Object oActionGroup is a cWebMenuGroup
 
@@ -196,7 +197,7 @@ Object oZoomJugador is a cWebView
             End_Procedure
 
         End_Object 
-    End_Object 
+    End_Object
 
     Procedure SetActionButtons
         tWebNavigateData NavigateData
@@ -252,7 +253,5 @@ Object oZoomJugador is a cWebView
         Case End
 
         Send SetActionButtons
-
     End_Procedure
-
 End_Object 
